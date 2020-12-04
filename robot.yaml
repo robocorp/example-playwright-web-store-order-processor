@@ -1,12 +1,12 @@
 tasks:
-  Web store orders:
+  Default:
     command:
       - python
       - -m
       - robot
       - --report
       - NONE
-      - -d
+      - --outputdir
       - output
       - --logtitle
       - Task log
@@ -14,10 +14,10 @@ tasks:
 
 condaConfigFile: conda.yaml
 artifactsDir: output
-ignoreFiles:
-  - .gitignore
 PATH:
   - .
 PYTHONPATH:
   - .
   - libraries
+ignoreFiles:
+    - .gitignore
