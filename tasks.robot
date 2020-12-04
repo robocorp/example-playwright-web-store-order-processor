@@ -50,7 +50,7 @@ Login
 
 *** Keywords ***
 Assert logged in
-    Wait For Elements State    inventory_container
+    Wait For Elements State    id=inventory_container
     Get Url  ==    ${SWAG_LABS_URL}/inventory.html
 
 *** Keywords ***
