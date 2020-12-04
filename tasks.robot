@@ -46,6 +46,12 @@ Login
     Fill Text    id=user-name    ${user_name}
     Fill Secret  id=password    ${password}
     Submit Form
+    Assert logged in
+
+*** Keywords ***
+Assert logged in
+    Wait For Elements State    inventory_container
+    Get Url  ==    ${SWAG_LABS_URL}/inventory.html
 
 *** Keywords ***
 Collect orders
@@ -58,8 +64,10 @@ Process order
     [Arguments]    ${order}
     Reset application state
     Open products page
+    Assert cart is empty
     Add product to cart    ${order}
     Open cart
+    Assert one product in cart    ${order}
     Checkout    ${order}
     Open products page
 
@@ -71,6 +79,11 @@ Reset application state
 *** Keywords ***
 Open products page
     Go To    ${SWAG_LABS_URL}/inventory.html
+
+*** Keywords ***
+Assert cart is empty
+    Get Text  css=.shopping_cart_link    ==  ${EMPTY}
+    Get Element State    css=.shopping_cart_badge  visible  ==  False
 
 *** Keywords ***
 Add product to cart
@@ -89,6 +102,12 @@ Assert items in cart
 *** Keywords ***
 Open cart
     Click    css=.shopping_cart_link
+    Assert cart page
+
+*** Keywords ***
+Assert cart page
+    Wait For Elements State    id=cart_contents_container
+    Get Url  ==   ${SWAG_LABS_URL}/cart.html
 
 *** Keywords ***
 Assert one product in cart
@@ -105,6 +124,21 @@ Checkout
     Fill Text    id=postal-code    ${{ str(${order["zip"]} )}}
     Submit Form
     Click  css=.btn_action
+
+*** Keywords ***
+Assert checkout information page
+    Wait For Elements State    id=checkout_info_container
+    Get Url  ==  ${SWAG_LABS_URL}/checkout-step-one.html
+
+*** Keywords ***
+Assert checkout confirmation page
+    Wait For Elements State    id=checkout_summary_container
+    Get Url  ==  ${SWAG_LABS_URL}/checkout-step-two.html
+
+*** Keywords ***
+Assert checkout complete page
+    Wait For Elements State    id=checkout_complete_container
+    Get Url  ==  ${SWAG_LABS_URL}/checkout-complete.html
 
 *** Tasks ***
 Place orders
