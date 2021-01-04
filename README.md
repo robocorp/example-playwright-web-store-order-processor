@@ -4,9 +4,7 @@
 
 See https://robocorp.com/docs/development-howtos/browser/playwright for an in-depth look into the library itself.
 
-Why use playwright based Browser library?
+Why use Playwright based Browser library?
 - Implicit retrying on Getters
-- More conscise API
-
-- Speed:
-  - Context and Page abstractions, enabling multi-login and multi-tab automation without multiple browsers
+- More concise API
+- Execution speed through Context and Page abstractions, enabling multi-login and multi-tab automation without multiple browsers
