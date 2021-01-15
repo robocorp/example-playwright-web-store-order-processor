@@ -1,13 +1,21 @@
 channels:
-  - defaults
+  # Define conda channels here.
   - conda-forge
+  - defaults
+
 dependencies:
+  # Define conda packages here.
+  # If available, always prefer the conda version of a package, installation will be faster and more efficient.
+  # https://anaconda.org/search
   - python=3.7.5
-  - pip=20.1
   - nodejs=14.2.0
+
+  - pip=20.1
   - pip:
-    - rpaframework==6.7.1
-    - robotframework-browser==2.3.3
-    - robotframework-lsp
-rccPostInstall: 
+      # Define pip packages here.
+      # https://pypi.org/
+      - rpaframework==7.1.1 # https://rpaframework.org/releasenotes.html
+      - robotframework-browser==3.0.0
+
+rccPostInstall:
   - rfbrowser init
