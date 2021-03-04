@@ -1,6 +1,5 @@
 channels:
   # Define conda channels here.
-  - defaults
   - conda-forge
 
 dependencies:
@@ -14,8 +13,8 @@ dependencies:
   - pip:
       # Define pip packages here.
       # https://pypi.org/
-      - rpaframework==7.1.1 # https://rpaframework.org/releasenotes.html
-      - robotframework-browser==3.0.0
+      - rpaframework==7.6.0 # https://rpaframework.org/releasenotes.html
+      - robotframework-browser==3.2.0
 
 rccPostInstall:
   - rfbrowser init
