@@ -7,14 +7,14 @@ dependencies:
   # If available, always prefer the conda version of a package, installation will be faster and more efficient.
   # https://anaconda.org/search
   - python=3.7.5
-  - nodejs=14.17.1
+  - nodejs=14.17.4
 
   - pip=20.1
   - pip:
       # Define pip packages here.
       # https://pypi.org/
-      - robotframework-browser==6.0.0
-      - rpaframework==10.8.0 # https://rpaframework.org/releasenotes.html
+      - robotframework-browser==7.0.0
+      - rpaframework==10.9.0 # https://rpaframework.org/releasenotes.html
 
 rccPostInstall:
   - rfbrowser init
