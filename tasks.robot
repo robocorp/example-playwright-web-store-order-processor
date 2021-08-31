@@ -13,7 +13,7 @@ Library           OperatingSystem
 Library           Orders
 Library           Browser
 Library           RPA.HTTP
-Library           RPA.Robocloud.Secrets
+Library           RPA.Robocorp.Vault
 
 *** Variables ***
 ${EXCEL_FILE_NAME}=    Data.xlsx
