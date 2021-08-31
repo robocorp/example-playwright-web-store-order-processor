@@ -1,7 +1,7 @@
 # ## Web store order robot example
-# This example is explained in detail <a href="https://robocorp.com/docs/development-howtos/browser/web-store-order-robot">here</a>.
+# This example is explained in detail <a href="https://robocorp.com/docs/development-guide/browser/web-store-order-robot">here</a>.
 #
-# > !! **To run this code locally, you need to complete additional setup steps. Check the README.md file or the <a href="https://robocorp.com/docs/development-howtos/browser/web-store-order-robot">example page</a> for details!**
+# > !! **To run this code locally, you need to complete additional setup steps. Check the README.md file or the <a href="https://robocorp.com/docs/development-guide/browser/web-store-order-robot">example page</a> for details!**
 #
 
 *** Settings ***
@@ -33,25 +33,25 @@ Process orders
 
 *** Keywords ***
 Submit Form
-    Click  input[type=submit]
+    Click    input[type=submit]
 
 *** Keywords ***
 Open Swag Labs
-    New Browser  headless=False
-    New Page  ${SWAG_LABS_URL}
+    New Browser    headless=False
+    New Page    ${SWAG_LABS_URL}
 
 *** Keywords ***
 Login
     [Arguments]    ${user_name}    ${password}
     Fill Text    id=user-name    ${user_name}
-    Fill Secret  id=password    ${password}
+    Fill Secret    id=password    ${password}
     Submit Form
     Assert logged in
 
 *** Keywords ***
 Assert logged in
     Wait For Elements State    id=inventory_container
-    Get Url  ==    ${SWAG_LABS_URL}/inventory.html
+    Get Url    ==    ${SWAG_LABS_URL}/inventory.html
 
 *** Keywords ***
 Collect orders
@@ -73,7 +73,7 @@ Process order
 
 *** Keywords ***
 Reset application state
-    Click  css=.bm-burger-button button
+    Click    css=.bm-burger-button button
     Click    id=reset_sidebar_link
 
 *** Keywords ***
@@ -82,22 +82,22 @@ Open products page
 
 *** Keywords ***
 Assert cart is empty
-    Get Text  css=.shopping_cart_link    ==  ${EMPTY}
-    Get Element State    css=.shopping_cart_badge  visible  ==  False
+    Get Text    css=.shopping_cart_link    ==    ${EMPTY}
+    Get Element State    css=.shopping_cart_badge    visible    ==    False
 
 *** Keywords ***
 Add product to cart
     [Arguments]    ${order}
     ${product_name}=    Set Variable    ${order["item"]}
     ${locator}=    Set Variable    xpath=//div[@class="inventory_item" and descendant::div[contains(text(), "${product_name}")]]
-    ${add_to_cart_button}=    Get Element  ${locator} >> .btn_primary
-    Click  ${add_to_cart_button}
+    ${add_to_cart_button}=    Get Element    ${locator} >> .btn_primary
+    Click    ${add_to_cart_button}
     Assert items in cart    1
 
 *** Keywords ***
 Assert items in cart
     [Arguments]    ${quantity}
-    Get Text    css=.shopping_cart_badge    ==  ${quantity}
+    Get Text    css=.shopping_cart_badge    ==    ${quantity}
 
 *** Keywords ***
 Open cart
@@ -107,13 +107,13 @@ Open cart
 *** Keywords ***
 Assert cart page
     Wait For Elements State    id=cart_contents_container
-    Get Url  ==   ${SWAG_LABS_URL}/cart.html
+    Get Url    ==    ${SWAG_LABS_URL}/cart.html
 
 *** Keywords ***
 Assert one product in cart
     [Arguments]    ${order}
-    Get Text    css=.cart_quantity    ==  1
-    Get Text    css=.inventory_item_name    ==  ${order["item"]}
+    Get Text    css=.cart_quantity    ==    1
+    Get Text    css=.inventory_item_name    ==    ${order["item"]}
 
 *** Keywords ***
 Checkout
@@ -123,22 +123,22 @@ Checkout
     Fill Text    id=last-name    ${order["last_name"]}
     Fill Text    id=postal-code    ${{ str(${order["zip"]} )}}
     Submit Form
-    Click  css=.btn_action
+    Click    css=.btn_action
 
 *** Keywords ***
 Assert checkout information page
     Wait For Elements State    id=checkout_info_container
-    Get Url  ==  ${SWAG_LABS_URL}/checkout-step-one.html
+    Get Url    ==    ${SWAG_LABS_URL}/checkout-step-one.html
 
 *** Keywords ***
 Assert checkout confirmation page
     Wait For Elements State    id=checkout_summary_container
-    Get Url  ==  ${SWAG_LABS_URL}/checkout-step-two.html
+    Get Url    ==    ${SWAG_LABS_URL}/checkout-step-two.html
 
 *** Keywords ***
 Assert checkout complete page
     Wait For Elements State    id=checkout_complete_container
-    Get Url  ==  ${SWAG_LABS_URL}/checkout-complete.html
+    Get Url    ==    ${SWAG_LABS_URL}/checkout-complete.html
 
 *** Tasks ***
 Place orders

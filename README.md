@@ -2,7 +2,7 @@
 
 [Web store order processor example robot](https://github.com/robocorp/example-web-store-order-processor) but implemented with Playwright based Browser library.
 
-See https://robocorp.com/docs/development-howtos/browser/playwright for an in-depth look into the library itself.
+See https://robocorp.com/docs/development-guide/browser/playwright for an in-depth look into the library itself.
 
 Why use Playwright based Browser library?
 
