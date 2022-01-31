@@ -1,9 +1,3 @@
-# ## Web store order robot example
-# This example is explained in detail <a href="https://robocorp.com/docs/development-guide/browser/web-store-order-robot">here</a>.
-#
-# > !! **To run this code locally, you need to complete additional setup steps. Check the README.md file or the <a href="https://robocorp.com/docs/development-guide/browser/web-store-order-robot">example page</a> for details!**
-#
-
 *** Settings ***
 Documentation     Swag order robot. Places orders at https://www.saucedemo.com/
 ...               by processing a spreadsheet of orders and ordering the
@@ -11,7 +5,7 @@ Documentation     Swag order robot. Places orders at https://www.saucedemo.com/
 ...               cloud vault for credentials.
 Library           OperatingSystem
 Library           Orders
-Library           Browser
+Library           RPA.Browser.Playwright
 Library           RPA.HTTP
 Library           RPA.Robocorp.Vault
 
@@ -89,7 +83,9 @@ Assert cart is empty
 Add product to cart
     [Arguments]    ${order}
     ${product_name}=    Set Variable    ${order["item"]}
-    ${locator}=    Set Variable    xpath=//div[@class="inventory_item" and descendant::div[contains(text(), "${product_name}")]]
+    ${locator}=
+    ...    Set Variable
+    ...    xpath=//div[@class="inventory_item" and descendant::div[contains(text(), "${product_name}")]]
     ${add_to_cart_button}=    Get Element    ${locator} >> .btn_primary
     Click    ${add_to_cart_button}
     Assert items in cart    1
