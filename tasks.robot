@@ -77,7 +77,7 @@ Open products page
 *** Keywords ***
 Assert cart is empty
     Get Text    css=.shopping_cart_link    ==    ${EMPTY}
-    Get Element State    css=.shopping_cart_badge    visible    ==    False
+    Get Element States    css=.shopping_cart_badge    !=    visible
 
 *** Keywords ***
 Add product to cart
