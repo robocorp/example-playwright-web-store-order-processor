@@ -2,12 +2,15 @@ channels:
   - conda-forge
 
 dependencies:
-  - python=3.7.5
-  - nodejs=16.14.2
-  - pip=20.1
+  # Define conda-forge packages here -> https://anaconda.org/search
+  # When available, prefer the conda-forge packages over pip as installations are more efficient.
+  - python=3.9.13                      # https://pyreadiness.org/3.9/ 
+  - nodejs=18.12.1                     # https://nodejs.org/en/blog/
+  - pip=22.3.1                         # https://pip.pypa.io/en/stable/news/
   - pip:
-      - robotframework-browser==12.4.0
-      - rpaframework==14.1.1 # https://rpaframework.org/releasenotes.html
+  # Define pip packages here -> https://pypi.org/
+      - robotframework-browser==14.2.1 # https://pypi.org/project/robotframework-browser/#history
+      - rpaframework==19.3.1           # https://rpaframework.org/releasenotes.html
 
 rccPostInstall:
   - rfbrowser init
